@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -79,8 +79,6 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
-.env.test
-.env.development
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
@@ -131,8 +129,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
+=======
+dist
+node_modules
+.env*
 !.env.example
 yarn.lock
 .vscode
-
+>>>>>>> f74c753ae5b2a13cd8b9b72ff7eb61c5f26da125
