@@ -76,7 +76,7 @@ async function getEnrollmentByUserId(userId: number) {
   const enrollment = await enrollmentRepository.getEnrollmentByUserId(userId);
   if (!enrollment) {
     throw {
-      name: 'notFound',
+      name: 'NotFoundError',
       message: "Enrollment not found or don't exist!",
     };
   }
