@@ -1,17 +1,28 @@
-import { prisma } from "../../config"
+import { prisma } from '../../config';
+import { CardData } from '../../controllers/payments-controller';
 
 async function getPaymentsByTicketId(ticketId: number) {
-    console.log("repository")
+  return await prisma.payment.findFirst({
+    where: {
+      ticketId,
+    },
+  });
+}
 
-    return await prisma.payment.findFirst({
-        where: {
-            ticketId
-        }
-    })
+async function createPayment(ticketId: number, value: number, cardData: CardData) {
+  return await prisma.payment.create({
+    data: {
+      ticketId,
+      value,
+      cardIssuer: cardData.issuer,
+      cardLastDigits: cardData.number.toString().slice(-4),
+    },
+  });
 }
 
 const paymentsRepository = {
-    getPaymentsByTicketId, 
-}
+  getPaymentsByTicketId,
+  createPayment,
+};
 
-export default paymentsRepository
+export default paymentsRepository;
