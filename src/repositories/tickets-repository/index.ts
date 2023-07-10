@@ -18,9 +18,9 @@ async function getTickets(enrollmentId: number) {
 async function newTicket(enrollmentId: number, ticketTypeId: number) {
   return await prisma.ticket.create({
     data: {
+      status: 'RESERVED',
       ticketTypeId,
       enrollmentId,
-      status: 'RESERVED',
       updatedAt: new Date(Date.now()),
     },
   });

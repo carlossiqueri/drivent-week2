@@ -12,8 +12,8 @@ async function getTickets(userId: number) {
   const userTickets = await ticketsRepository.getTickets(enrollment.id);
   if (!userTickets) {
     throw {
-      name: 'NotFoundErorr',
-      message: "Enrollment not found or don't exist",
+      name: 'NotFoundError',
+      message: "User Ticket not found or don't exist",
     };
   }
 
@@ -24,19 +24,7 @@ async function newTicket(userId: number, ticketTypeId: number) {
   // userId está relacionado ao model enrollments que por sua vez está relacionado com o model tickets
   // mesma operação utilizada na função getTickets uma vez que ambas precisam relacionar user => ticket
   const enrollment = await enrollmentsService.getEnrollmentByUserId(userId);
-  if (!enrollment){
-    throw {
-        name: 'notFoundError',
-        message: 'User not found!'
-    }
-  }
-  if(!ticketTypeId){
-    throw{
-        name: 'BadRequestError',
-        message: 'Could not find ticketTypeId'
-    }
-  }
-  await ticketsRepository.newTicket(enrollment.id, userId);
+  await ticketsRepository.newTicket(enrollment.id, ticketTypeId);
   return await ticketsRepository.getTickets(enrollment.id);
 }
 

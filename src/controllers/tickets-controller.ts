@@ -16,7 +16,8 @@ export async function getTickets(req: AuthenticatedRequest, res: Response) {
 
 export async function newTicket(req: AuthenticatedRequest, res: Response) {
   const userId = req.userId;
-  const { ticketTypeId } = req.body;
+  const ticketTypeId = req.body.ticketTypeId;
+  console.log("aqui o test");
   const createdTicket = await ticketsServices.newTicket(userId, ticketTypeId);
   res.status(httpStatus.CREATED).send(createdTicket);
 }
